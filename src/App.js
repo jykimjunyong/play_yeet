@@ -11,7 +11,7 @@ export const OptionList = (props) => (
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {value: 1}
+    this.state = {value: 1, buttonClicked: 0}
   }
   playAudio = (event) => {
     const audioEl = document.getElementsByClassName("audio-element")[0]
@@ -21,6 +21,8 @@ class App extends React.Component {
         audioEl.play();
       }, i*1000);
     }
+    this.setState({buttonClicked: this.state.buttonClicked +1})
+    console.log("Button Clicked:"+this.state.buttonClicked)
   }
 
   selectnum = (optionSelected) => {
@@ -35,9 +37,14 @@ class App extends React.Component {
       items.push(<option key={i} value={i}>{i}</option>)
     }
 
+    let message = ""
+    if ( this.state.buttonClicked == 10 ) {
+      message = "     Work Harder"
+    }
+
     return (
       <div
-        style={{
+              style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center"
@@ -48,7 +55,7 @@ class App extends React.Component {
         </select> times
         <button onClick={this.playAudio}>
           <span>Play Yeet Joon!</span>
-        </button>&nbsp;
+        </button>{message}
         <audio className="audio-element">
           <source src="yeet.mp3"></source>
         </audio>
