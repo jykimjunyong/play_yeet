@@ -38,7 +38,7 @@ class App extends React.Component {
     }
 
     let message = ""
-    if ( this.state.buttonClicked == 10 ) {
+    if ( this.state.buttonClicked % 10 == 9) {
       message = "     Work Harder"
     }
 
